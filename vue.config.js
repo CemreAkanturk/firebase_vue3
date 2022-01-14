@@ -5,6 +5,7 @@ module.exports = {
   publicPath: process.env.DEPLOY_ENV === 'GH_PAGES'
     ? '/admin-one-vue-tailwind/'
     : '/',
+    parallel: false,
 
   // Remove moment.js from chart.js
   configureWebpack: config => {
