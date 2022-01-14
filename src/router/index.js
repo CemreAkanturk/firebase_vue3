@@ -1,47 +1,109 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from 'vue-router';
+import Home from '@/views/Home.vue'
 import store from "../store";
-
 const routes = [
   {
-    name: "HomePage",
-    path: "/",
-    component: () => import("../views/Home"),
+   
+    meta: {
+      title: 'Dashboard'
+    },
+    path: '/',
+    name: 'home',
+    component: Home
   },
   {
-    name: "LoginPage",
-    path: "/login",
-    component: () => import("../views/Login"),
+   
+	meta: {
+	  title: 'Müşteriler'
+	},
+	path: '/musteriler',
+	name: 'customers',
+	component:  () => import( '@/views/Customers.vue')
+   },
+  {
+    meta: {
+      title: 'Tables'
+    },
+    path: '/tables',
+    name: 'tables',
+    
+    component: () => import( '@/views/Tables.vue')
   },
   {
-    name: "RegisterPage",
-    path: "/register",
-    component: () => import("../views/Register"),
+    meta: {
+      title: 'Forms'
+    },
+    path: '/forms',
+    name: 'forms',
+    component: () => import(/* webpackChunkName: "forms" */ '@/views/Forms.vue')
   },
   {
-    name: "NewBookMarkPage",
-    path: "/new",
-    component: () => import("../views/NewBookMark"),
+    meta: {
+      title: 'Profile'
+    },
+    path: '/profile',
+    name: 'profile',
+    component: () => import(/* webpackChunkName: "profile" */ '@/views/Profile.vue')
   },
-];
+  {
+    meta: {
+      title: 'Ui'
+    },
+    path: '/ui',
+    name: 'ui',
+    component: () => import(/* webpackChunkName: "ui" */ '@/views/Ui.vue')
+  },
+  {
+    meta: {
+      title: 'Responsive layout'
+    },
+    path: '/responsive',
+    name: 'responsive',
+    component: () => import(/* webpackChunkName: "responsive" */ '@/views/Responsive.vue')
+  },
+  {
+    meta: {
+      title: 'Login',
+      fullScreen: true
+    },
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/Login.vue')
+  },
+  {
+    meta: {
+      title: 'Error',
+      fullScreen: true
+    },
+    path: '/error',
+    name: 'error',
+    component: () => import(/* webpackChunkName: "error" */ '@/views/Error.vue')
+  }
+]
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: routes,
-});
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    return savedPosition || { top: 0 }
+  }
+})
 
 router.beforeEach((to, _, next) => {
-  const authRequiredRoutes = ["HomePage", "NewBookMarkPage"];
-  const authNotRequiredRoutes = ["LoginPage", "RegisterPage"];
 
-  if (authNotRequiredRoutes.indexOf(to.name) > -1) {
-    if (store.getters._isAuthenticated) next(false);
-  }
+	const authRequiredRoutes = ["home", "tables","forms", "ui","profile","responsive","error"];
+	const authNotRequiredRoutes = ["login"];
+   
+	if (authNotRequiredRoutes.indexOf(to.name) > -1) {
+	  if (store.getters._isAuthenticated) next(false);
+	}
+   
+	if (authRequiredRoutes.indexOf(to.name) > -1) {
+	  if (store.getters._isAuthenticated) next();
+	  else next({ name: "login" });
+	} else {
+	  next();
+	}
+   });
 
-  if (authRequiredRoutes.indexOf(to.name) > -1) {
-    if (store.getters._isAuthenticated) next();
-    else next({ name: "LoginPage" });
-  } else {
-    next();
-  }
-});
-export default router;
+export default router

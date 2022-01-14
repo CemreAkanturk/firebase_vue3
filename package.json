@@ -1,53 +1,50 @@
 {
-  "name": "blog",
-  "version": "0.1.0",
-  "private": true,
+  "name": "admin-one-vue-tailwind",
+  "version": "2.0.0",
   "scripts": {
+    "dev": "vite --host",
     "serve": "vue-cli-service serve",
+    "serve:vite": "vite preview",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build:vite": "vite build",
+    "lint": "vue-cli-service lint",
+    "lint:fix": "vue-cli-service lint --fix"
   },
   "dependencies": {
+    "@mdi/js": "^6.4.95",
     "axios": "^0.24.0",
+    "chart.js": "^3.6.0",
     "core-js": "^3.6.5",
-    "crypto-js": "^4.1.1",
-    "firebase": "^9.6.2",
-    "json-server": "^0.17.0",
-    "moment": "^2.29.1",
-    "secure-ls": "^1.2.6",
-    "socket.io-client": "^4.4.1",
+    "firebase": "^9.6.3",
+    "numeral": "^2.0.6",
     "vue": "^3.0.0",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2",
+    "moment": "^2.29.1",
+    "secure-ls": "^1.2.6",
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
-    "@types/crypto-js": "^4.1.0",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@babel/eslint-parser": "^7.16.3",
+    "@tailwindcss/forms": "^0.4.0",
+    "@types/tailwindcss": "^2.2.4",
+    "@vitejs/plugin-vue": "^2.0.0",
+    "@vue/cli-plugin-babel": "5.0.0-rc.1",
+    "@vue/cli-plugin-eslint": "5.0.0-rc.1",
+    "@vue/cli-plugin-router": "5.0.0-rc.1",
+    "@vue/cli-plugin-vuex": "5.0.0-rc.1",
+    "@vue/cli-service": "^3.3.1",
     "@vue/compiler-sfc": "^3.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "@vue/eslint-config-standard": "^6.0.0",
+    "autoprefixer": "^10.2.6",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-vue": "^7.20.0",
+    "postcss": "^8.3.0",
+    "postcss-import": "^14.0.2",
+    "tailwindcss": "^3.0.2",
+    "vite": "^2.6.14"
+  }
 }
