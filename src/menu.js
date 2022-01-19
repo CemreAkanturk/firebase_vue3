@@ -24,60 +24,65 @@ export default [
 	label: "Müşteriler",
    },
     {
-      to: "/",
       icon: mdiTable,
-      label: "Stok İşlemleri",
-	 menu: [
-		{
-		  label: "STOK GRUPLARI",
-		},
-		{
-		  label: "STOK HAREKETLERİ",
-		}
-	
-	   ],
-    },
-    {
-      to: "/",
-      icon: mdiTable,
-      label: "Alış/Satış İşlemleri",
+      label: "Satışlar",
       menu: [
         {
-          label: "ALIŞ YAP",
+		to: "/faturalar",
+          label: "FATURALAR",
         },
         {
-          label: "SATIŞ YAP",
+		to: "/satıs-raporları",
+          label: "SATIŞLAR RAPORU",
+        },
+        {	
+		to: "/tahsilat-raporları",
+          label: "TAHSİLATLAR RAPORU",
         },
         {
-          label: "ALIŞ FATURALARI",
-        },
-        {
-          label: "SATIŞ FATURALARI",
-        },
-        {
-          label: "TAKSİT FATURALARI",
-        },
-        {
-          label: "TÜM FATURALAR",
-        },
+		to: "/gelir-gider-raporu",
+          label: "GELİR GİDER RAPORU",
+        }
       ],
     },
     {
 	to: "/",
 	icon: mdiDesktopMac,
-	label: "Genel Giderler",
+	label: "Giderler",
+	menu: [
+		{
+		  label: "GİDER LİSTESİ",
+		},
+		{
+		  label: "TEDARİKÇİLER",
+		},
+		{
+		  label: "GİDERLER RAPORU",
+		},
+		{
+			label: "KDV RAPORU",
+	     }
+	   ],
    },
     {
 	to: "/",
 	icon: mdiDesktopMac,
 	label: "Ödemeler",
    },
-   
-    {
+   {
 	to: "/",
-	icon: mdiDesktopMac,
-	label: "Raporlar",
-   }
+	icon: mdiTable,
+	label: "Stok İşlemleri",
+	menu: [
+	    {
+		 label: "STOK GRUPLARI",
+	    },
+	    {
+		 label: "STOK HAREKETLERİ",
+	    }
+    
+	  ],
+   },
   ],
 
   "Examples",

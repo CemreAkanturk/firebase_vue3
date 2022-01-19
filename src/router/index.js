@@ -20,6 +20,15 @@ const routes = [
 	name: 'customers',
 	component:  () => import( '@/views/Customers.vue')
    },
+   {
+   
+	meta: {
+	  title: 'YeniMusteri'
+	},
+	path: '/musteriler/yeni',
+	name: 'addcustomer',
+	component:  () => import( '@/views/AddCustomer.vue')
+   },
   {
     meta: {
       title: 'Tables'

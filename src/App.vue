@@ -34,4 +34,35 @@ const overlayClick = () => {
   />
 </template>
 
+<style>
+
+*:focus,
+*:active,
+*::before,
+*::after{
+	outline:none !important;
+	--tw-ring-shadow:none !important
+}
+
+.checkbox input[type=checkbox]:focus+.check{
+	--tw-ring-shadow:none !important
+}
+.search .border-gray-700 {
+    border-color:#ededed1e !important;
+}
+
+.addCustomer .border-gray-700  {
+    border-color:#0f0f0f42 !important;
+}
+
+.dark tr:nth-child(odd) td  {
+   background-color: #111827 !important;
+}
+.dark tr:hover td {
+    background-color: #19243a !important;
+}
+
+
+</style>
+
 

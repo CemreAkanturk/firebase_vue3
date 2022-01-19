@@ -43,9 +43,12 @@ const confirmCancel = mode => {
   emit(mode)
 }
 
+
 const confirm = () => confirmCancel('confirm')
 
-const cancel = () => confirmCancel('cancel')
+const cancel = () => {
+	confirmCancel('cancel')
+	}
 </script>
 
 <template>
@@ -56,36 +59,22 @@ const cancel = () => confirmCancel('cancel')
     <card-component
       v-show="value"
       :title="title"
-      class="shadow-lg w-full max-h-modal md:w-3/5 lg:w-2/5 z-50"
+      class="shadow-lg w-full md:w-3/5 lg:w-2/5 z-50"
       :header-icon="mdiClose"
       @header-icon-click="cancel"
     >
-      <div class="space-y-3">
+      <div class="space-y-3" >
         <h1
           v-if="largeTitle"
           class="text-2xl"
         >
           {{ largeTitle }}
         </h1>
-        <slot />
+        <slot  :cancel="cancel" :confirm="confirm"/>
       </div>
-
-      <divider />
-
-      <jb-buttons>
-        <jb-button
-          :label="buttonLabel"
-          :color="button"
-          @click="confirm"
-        />
-        <jb-button
-          v-if="hasCancel"
-          label="Cancel"
-          :color="button"
-          outline
-          @click="cancel"
-        />
-      </jb-buttons>
+	 
     </card-component>
   </overlay>
 </template>
+
+
