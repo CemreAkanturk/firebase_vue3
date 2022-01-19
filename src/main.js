@@ -15,11 +15,10 @@ store.dispatch('fetch', 'history')
 /* Dark mode */
 const localStorageDarkModeValue = localStorage.getItem(darkModeKey)
 
+if(localStorageDarkModeValue!=null){
+ store.dispatch('SetThemeMode')
+}else store.dispatch('darkMode')
 
-
-if ((localStorageDarkModeValue === null && window.matchMedia('(prefers-color-scheme: dark)').matches) || localStorageDarkModeValue === '1') {
-  store.dispatch('darkMode')
-}
 
 /* Default title tag */
 const defaultDocumentTitle = 'Stok Takip'

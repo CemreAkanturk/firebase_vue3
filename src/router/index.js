@@ -20,6 +20,16 @@ const routes = [
 	name: 'customers',
 	component:  () => import( '@/views/Customers.vue')
    },
+   
+  {
+   
+	meta: {
+	  title: 'Müsteri'
+	},
+	path: '/musteriler/:id',
+	name: 'customer',
+	component:  () => import( '@/views/CustomerProfile.vue')
+   },
    {
    
 	meta: {

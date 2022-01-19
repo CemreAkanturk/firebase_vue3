@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref } from "vue";
+import {useRouter} from "vue-router"
 import { useStore } from "vuex";
 import { mdiEye, mdiTrashCan } from "@mdi/js";
 import ModalBox from "@/components/ModalBox.vue";
@@ -9,7 +10,7 @@ import JbButtons from "@/components/JbButtons.vue";
 import JbButton from "@/components/JbButton.vue";
 import UserAvatar from "@/components/UserAvatar.vue";
 import service from "@/services/service";
-
+import CryptoJs from "crypto-js";
 const props = defineProps({
   checkable: Boolean,
   items: Array,
@@ -55,6 +56,14 @@ const remove = (id,cancel) => {
   service.DeleteCustomer(id);
   emits("deleteItem", id);
   cancel()
+};
+
+const router=useRouter()
+
+const customerGet = (userId) => {
+ const key = "fktld125.aso8kdusn.hssde";
+ const cryptedPass = CryptoJs.HmacSHA1(userId, key).toString();
+ router.push({ name: 'customer', params: { id: cryptedPass } })
 };
 
 const checked = (isChecked, client) => {
@@ -130,7 +139,7 @@ const checked = (isChecked, client) => {
         </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button color="success" :icon="mdiEye" small />
+            <jb-button color="success" :icon="mdiEye" small @click="customerGet(client.id)"/>
             <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalActive = true;deleteId=client.id"  />		
           </jb-buttons>
         </td>

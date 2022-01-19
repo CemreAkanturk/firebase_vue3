@@ -2,8 +2,8 @@ import { createStore } from "vuex";
 import { darkModeKey } from "@/config.js";
 import createPersistedState from "vuex-persistedstate";
 import services from "../services/service";
-// import SecureLS from "secure-ls";
-// var ls = new SecureLS({ isCompression: false });
+import SecureLS from "secure-ls";
+var ls = new SecureLS({ isCompression: false });
 
 export default createStore({
   state: {
@@ -72,27 +72,38 @@ export default createStore({
       document.documentElement.classList[value ? "add" : "remove"]("full-screen");
     },
 
-    darkMode({ commit, state }) {
-      const value = !state.darkMode;
+    SetThemeMode({ commit, state }) {
+    
+      const  value = state.darkMode;
+      document.documentElement.classList[value ? "add" : "remove"]("dark");
+      localStorage.setItem(darkModeKey, value ? "1" : "0");
+      commit("basic", {
+        key: "darkMode",
+        value,
+      });
+    },
 
+    darkMode({ commit, state }) {
+    
+      const  value = !state.darkMode;
+   
       document.documentElement.classList[value ? "add" : "remove"]("dark");
 
       localStorage.setItem(darkModeKey, value ? "1" : "0");
+      
 
       commit("basic", {
         key: "darkMode",
         value,
       });
     },
-  },
-  plugins: [
-    createPersistedState(),
-    // 	{
-    //   storage: {
-    //     getItem: (key) => ls.get(key),
-    //     setItem: (key, value) => ls.set(key, value),
-    //     removeItem: (key) => ls.remove(key),
-    //   },
-    // }
+  } , plugins: [
+    createPersistedState({
+      storage: {
+        getItem: (key) => ls.get(key),
+        setItem: (key, value) => ls.set(key, value),
+        removeItem: (key) => ls.remove(key),
+      },
+    }),
   ],
 });
