@@ -1,29 +1,23 @@
 
 <template>
   <full-screen-section
-    v-slot="{ cardRounded }"
     bg="login"
   >
-    <card-component
-     
-      :rounded="cardRounded"
-      form
-      @submit.prevent="submit"
-    >
+    <div class="container">
+	    <img class="login-img" src="../assets/images/login.svg">
+    <h3 class="login">Admin Panel</h3>
       <field
-        label="Login"
         help="Please enter your login"
       >
         <control
           v-model="form.login"
           :icon="mdiAccount"
           name="login"
-          autocomplete="username"
+		placeholder="Email"
         />
       </field>
 
       <field
-        label="Password"
         help="Please enter your password"
       >
         <control
@@ -31,8 +25,8 @@
           :icon="mdiAsterisk"
           type="password"
           name="password"
-          autocomplete="current-password"
-        />
+       	 placeholder="Password"
+       />
       </field>
 
      
@@ -41,10 +35,12 @@
         <jb-button
           type="submit"
           color="info"
-          label="Login"
+          label="LOGIN"
+		class="login-btn"
+		  @click="submit"
         />
       </jb-buttons>
-    </card-component>
+    </div>
   </full-screen-section>
 </template>
 
@@ -64,8 +60,8 @@ import JbButtons from '@/components/JbButtons.vue'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 
 const form = reactive({
-  login: 'cemre123@gmail.com',
-  pass: '123456',
+  login: '',
+  pass: '',
 
 })
 
@@ -84,3 +80,41 @@ const submit = () => {
       });
 }
 </script>
+
+<style scoped>
+.login{
+	text-align: center;
+	font-size:36px;
+	font-family: Lato;
+	font-weight: 700;
+	color:#ebebeb;
+	margin-bottom:5%;
+
+
+}
+
+.container{
+	width: 25%;
+	min-width: 300px;
+	margin-top:-5%
+}
+
+.login-btn{
+	width: 100%;
+	height: 50px;
+	background: #2eafcd;
+	font-family: Roboto;
+	font-size:18px;
+	font-weight: 500;
+}
+.login-btn:hover{
+
+	background: rgb(41, 160, 187);
+	
+}
+
+.login-img{
+	width: 25%;
+	margin:5% auto
+}
+	</style>

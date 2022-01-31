@@ -1,4 +1,4 @@
-import { collection, getDocs ,addDoc ,deleteDoc ,doc ,onSnapshot } from "firebase/firestore";
+import { collection, getDocs,getDoc ,addDoc ,deleteDoc ,doc ,onSnapshot } from "firebase/firestore";
 import firebase from 'firebase/compat/app';
 import { getFirestore } from "firebase/firestore";
 import 'firebase/compat/auth';
@@ -20,14 +20,16 @@ firebase.auth()
 const db = getFirestore();
 
 
+
 export default{
 
  async fetchCustomers(){
+	 console.time()
 	const snapshot  =  await getDocs(collection(db, "customers"));
+	console.timeEnd()
 	const data=snapshot.docs.map((doc) => {
 		return { id: doc.id, ...doc.data() }
 	   })
-	 
 	return  data
    },
 
@@ -44,6 +46,13 @@ export default{
 	await deleteDoc(doc(db, "customers", docId));
 	
    },
+
+   async GetCustomer(customerId){
+	const docRef = doc(db, "customers", customerId);
+	const docSnap = await getDoc(docRef);
+	return docSnap.data()
+
+   }
    
  
 }

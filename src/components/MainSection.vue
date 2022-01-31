@@ -9,7 +9,7 @@ const isFullScreen = computed(() => store.state.isFullScreen)
 
 <template>
   <section
-    class="px-0 md:px-6"
+    class="px-0 md:px-0"
     :class="[ isFullScreen ? 'flex h-screen items-center justify-center' : 'py-6' ]"
   >
     <slot />

@@ -66,7 +66,7 @@ const submit = e => {
     >
       <p
         class="flex items-center py-3 grow font-bold"
-        :class="[ icon ? 'px-4' : 'px-6' ]"
+        :class="[ icon ? 'px-4' : 'px-4' ]"
       >
         <icon
           v-if="icon"
@@ -82,7 +82,6 @@ const submit = e => {
         aria-label="more options"
         @click.prevent="headerIconClick"
       >
-        <icon :path="computedHeaderIcon" />
       </a>
     </header>
     <div
@@ -93,7 +92,7 @@ const submit = e => {
     </div>
     <div
       v-else
-      :class="{'p-6':!hasTable}"
+      :class="{'p-4':!hasTable}"
     >
       <slot />
     </div>

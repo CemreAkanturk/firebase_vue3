@@ -8,3 +8,86 @@
 @import "_scrollbars.css";
 @import "_progress.css";
 @import "_table.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+*:focus,
+*:active,
+*::before,
+*::after{
+	outline:none !important;
+	--tw-ring-shadow:none !important
+}
+
+.checkbox input[type=checkbox]:focus+.check{
+	--tw-ring-shadow:none !important
+}
+.search .border-gray-700 {
+    border-color:#ededed1e !important;
+}
+
+.addCustomer .border-gray-700  {
+    border-color:#0f0f0f42 !important;
+}
+
+.dark tr:nth-child(odd) td  {
+   background-color: #111827 !important;
+}
+.dark tr:hover td {
+    background-color: #19243a !important;
+}
+
+.login-background{
+background: #232526;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+ #app{
+	padding: 0 20px;
+}
+
+.full-screen #app{
+	padding: 0;
+}
+
+.icon-32{
+	width: 32px;
+	height: 32px;
+	margin:0 5px;
+}
+
+body{
+	font-family: 'Roboto', sans-serif;
+}
+
+th {
+	color: #403637;
+	font-family: "Roboto Condensed", sans-serif;
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 13px;
+}
+
+.dark th {
+	color: #ebebeb;
+
+}
+
+td {
+	
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	letter-spacing: 0.5px;
+	font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+}
+
+.full{
+	width: 100%;
+}

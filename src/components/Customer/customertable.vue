@@ -62,7 +62,7 @@ const router=useRouter()
 
 const customerGet = (userId) => {
  const key = "fktld125.aso8kdusn.hssde";
- const cryptedPass = CryptoJs.HmacSHA1(userId, key).toString();
+ const cryptedPass = CryptoJs.AES.encrypt(userId, key).toString();
  router.push({ name: 'customer', params: { id: cryptedPass } })
 };
 
@@ -105,7 +105,7 @@ const checked = (isChecked, client) => {
     <thead>
       <tr>
         <th v-if="checkable" />
-        <th>İsim</th>
+        <th>isim</th>
         <th>Açıklama</th>
         <th>E-mail</th>
         <th>Telefon</th>

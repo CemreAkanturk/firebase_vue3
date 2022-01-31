@@ -10,6 +10,8 @@
   <router-link class="addNew" :to="{ name: 'addcustomer' }"> + Yeni Müşteri Ekle </router-link>
   </div>
 
+
+
   <CardComponent class="mb-6" title="Müşteriler" has-table>
     <Customertable @deleteItem="deleteItem" :items="customerList" checkable />
   </CardComponent>
@@ -41,7 +43,9 @@ export default {
   created() {
     this.$store.dispatch("getAllCustomers").then((response) => {
       this.customers = response;
+	
     });
+  
   },
   methods: {
     deleteItem(id) {
@@ -52,9 +56,8 @@ export default {
 //     },
   },
   computed: {
-    customerList() {
-      if (this.customers.length == 0) return [];
-      return this.customers.filter((customer) => {
+    customerList() {   
+      return this.customers.filter((customer) => {	
         return customer.name.toLowerCase().indexOf(this.searchText.toLowerCase()) != -1;
       });
     },

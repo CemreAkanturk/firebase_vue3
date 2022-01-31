@@ -4,7 +4,7 @@ body {
 
 #app {
   @apply w-screen transition-position lg:w-auto;
-  padding:0 20px;
+
 }
 
 .dropdown {

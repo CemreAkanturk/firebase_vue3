@@ -33,7 +33,7 @@ const form = reactive({
   description: "",
   address: "",
   iban: "",
-  balance: 0,
+  balance: "",
 });
 
 const router = useRouter();
@@ -48,7 +48,7 @@ const customElementsForm = reactive({
 });
 
 const getBalance = () => {
-  return customElementsForm.balance * customElementsForm.balanceStat.value;
+  return parseFloat(customElementsForm.balance * customElementsForm.balanceStat.value);
 };
 
 const submit = () => {
@@ -57,9 +57,10 @@ const submit = () => {
   }
 
   if (customElementsForm.startBalance && customElementsForm.balance) {
-    form.balance = getBalance();
-  }
 
+    form.balance = getBalance().toFixed(2);
+
+  }
   if (service.AddCustomer(form)) {
     Object.keys(form)?.forEach((field) => (form[field] = null));
     router.push({ name: "customers" });
@@ -104,7 +105,7 @@ const submit = () => {
       <div>
         <span>Firmanın</span>
 
-        <control style="width: 20%" type="number" v-model="customElementsForm.balance" placeholder="0" />
+        <input style="width: 20%" type="number" step="0.001" v-model="customElementsForm.balance" placeholder="0" />
 
         <span style="text-align: left; padding-left: 5px; width: 5%">TL</span>
         <control class="dropdown" v-model="customElementsForm.balanceStat" :options="selectOptions" />
