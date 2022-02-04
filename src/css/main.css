@@ -71,7 +71,7 @@ th {
 	font-weight: 600;
 	letter-spacing: 0.5px;
 	font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 13px;
+	font-size: 14px;
 }
 
 .dark th {
@@ -85,9 +85,13 @@ td {
 	font-weight: 400;
 	letter-spacing: 0.5px;
 	font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 14px;
+	font-size: 16px;
 }
 
 .full{
 	width: 100%;
+}
+
+.bg-blue-500 {
+	background-color: #117db1;
 }

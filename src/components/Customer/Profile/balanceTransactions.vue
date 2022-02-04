@@ -8,18 +8,16 @@
   </div>
 
   <div class="buttons">
-    <button class="blue" @click="isModalPayment = true">ÖDEME EKLE</button>
-    <button class="green"  @click="isModalCollection = true">TAHSİLAT EKLE</button>
+    <button class="blue" @click="isModalPayment = true;ModalStatus='payment'">ÖDEME EKLE</button>
+    <button class="green"  @click="isModalPayment = true;ModalStatus='collection'">TAHSİLAT EKLE</button>
     <button class="orange"  @click="isModalSalesInvoice = true">SATIŞ FATURASI EKLE</button>
     <button class="red"  @click="isModalPurchaseInvoice = true">ALIŞ FATURASI EKLE</button>
   </div>
 
-  <modal-box  v-model="isModalPayment" has-cancel>
-   <add-payment></add-payment>
+  <modal-box  v-model="isModalPayment" has-cancel  v-slot:default="slotProps">
+  	<add-payment :cancel="slotProps.cancel" :status="ModalStatus"></add-payment>
   </modal-box>
-  <modal-box v-model="isModalCollection" has-cancel>
-    <p>Tahsilat Ekle</p>
-  </modal-box>
+
 </template>
 
 <script setup>
@@ -27,7 +25,8 @@ import { ref, reactive, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 import ModalBox from "@/components/ModalBox.vue";
-import addPayment from '@/components/Customer/Profile/addPayment.vue'
+import addPayment from '@/components/Customer/Profile/addPayment.vue';
+import addCollection from '@/components/Customer/Profile/addCollection.vue'
 
 const props = defineProps({
   balance: Number,
@@ -35,17 +34,20 @@ const props = defineProps({
 
 const isModalPayment = ref(false);
 const isModalCollection = ref(false);
-const isModalSalesInvoice = ref(false);
-const isModalPurchaseInvoice = ref(false);
+const is = ref(false);
+const ModalStatus=ref("payment")
 
 const state = reactive({
   transtactions: {
-    operation_type: "",
+    operation:{
+	    id:0,
+	    name:""
+    },
     balance: "",
     date: "",
     description: "",
     sum: 0,
-  },
+  }
 });
 </script>
 <style scoped>
@@ -58,6 +60,7 @@ const state = reactive({
   font-size: 15px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1%;
   border-bottom: 1px solid #ebebeb;
 }
@@ -71,7 +74,7 @@ const state = reactive({
 .price {
   color: #999593;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .buttons {

@@ -1,4 +1,4 @@
-import { collection, getDocs,getDoc ,addDoc ,deleteDoc ,doc ,onSnapshot } from "firebase/firestore";
+import { collection, getDocs,updateDoc,getDoc ,addDoc ,deleteDoc ,doc ,onSnapshot } from "firebase/firestore";
 import firebase from 'firebase/compat/app';
 import { getFirestore } from "firebase/firestore";
 import 'firebase/compat/auth';
@@ -24,7 +24,7 @@ const db = getFirestore();
 export default{
 
  async fetchCustomers(){
-	 console.time()
+	
 	const snapshot  =  await getDocs(collection(db, "customers"));
 	console.timeEnd()
 	const data=snapshot.docs.map((doc) => {
@@ -44,16 +44,36 @@ export default{
 
  async DeleteCustomer(docId){
 	await deleteDoc(doc(db, "customers", docId));
-	
    },
 
    async GetCustomer(customerId){
 	const docRef = doc(db, "customers", customerId);
 	const docSnap = await getDoc(docRef);
-	return docSnap.data()
+	return { id: customerId, ...docSnap.data() }
 
-   }
+   },
+
+   async UpdateCustomerBalance(customerId, newBalance){
+	
+	const docRef = doc(db, "customers", customerId);
+	await updateDoc(docRef, {
+		balance: newBalance
+	   });
+	
+   },
    
+    async AddPayment(customerId,docDatas){
+	const docRef = doc(db, "customers", customerId);
+	await updateDoc(docRef, {
+		transactions: docDatas
+	   });
+	
+   },
+
+
+
+
+
  
 }
 

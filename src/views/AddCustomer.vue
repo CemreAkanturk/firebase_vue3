@@ -34,6 +34,7 @@ const form = reactive({
   address: "",
   iban: "",
   balance: "",
+  transactions:[]
 });
 
 const router = useRouter();

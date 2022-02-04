@@ -68,6 +68,7 @@ const checked = (isChecked, client) => {
 </script>
 
 <template>
+
   <div v-if="checkedRows.length" class="bg-gray-50 p-3 dark:bg-gray-800">
     <span v-for="checkedRow in checkedRows" :key="checkedRow.id" class="inline-block bg-gray-100 px-2 py-1 rounded-sm mr-2 text-sm dark:bg-gray-700">
       {{ checkedRow.name }}
@@ -87,10 +88,10 @@ const checked = (isChecked, client) => {
     <tbody>
       <tr v-for="item in itemsPaginated" :key="item.id">
         <td data-label="Name">
-          {{ item.operation_type }}
+          {{ item.operation.name }}
         </td>
         <td data-label="Company">
-          {{ item.description }}
+          {{ item.description }} <small v-if="item.operation.id==1">({{item.bank}} #{{item.check_no}}})</small>
         </td>
         <td data-label="City">
           {{ item.date }}
@@ -104,6 +105,7 @@ const checked = (isChecked, client) => {
       </tr>
     </tbody>
   </table>
+  <div class="info" v-if="items.length==0">Müşteriye ait işlem geçmişi henüz bulunmamaktadır!</div>
   <div class="table-pagination">
     <level>
       <jb-buttons>
@@ -114,3 +116,14 @@ const checked = (isChecked, client) => {
   </div>
 </template>
 
+<style scoped>
+small{
+color:gray
+}
+
+.info{
+	text-align: center;
+	margin:30px 0;
+	color:gray
+}
+</style>

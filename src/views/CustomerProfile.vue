@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed,provide } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 import { mdiAccount, mdiAccountCircle, mdiLock, mdiMail, mdiAsterisk, mdiFormTextboxPassword } from "@mdi/js";
@@ -33,23 +33,61 @@ const state = reactive({
 });
 
 service.GetCustomer(decodeId).then((data) => {
- 
+
   state.customer = data;
-  state.customer.transactions=[{
-	  operation_type:"Ödeme",
-	  balance:0,
-	  date:"21-01-2022",
-	  description:"fatura ödendi",
-	  sum:50
-  },
-  {
-	  operation_type:"Ödeme",
-	  balance:0,
-	  date:"21-01-2022",
-	  description:"fatura ödendi",
-	  sum:50
-  }]
+  
+
 });
+
+const UpdateBalance = (customerId,newBalance)=>{
+     service.UpdateCustomerBalance(customerId,newBalance)
+}
+
+const addCollection = CollectionData=>{
+     if(CollectionData.sum<0)
+	return
+	
+
+     state.customer.balance= parseFloat(state.customer.balance) + sum;
+
+	UpdateBalance(state.customer.id,state.customer.balance)
+     var data={ balance:state.customer.balance, ...paymentData }
+	
+	if(!state.customer.transactions){
+		state.customer.transactions=[]
+	}
+	state.customer.transactions.push(data)
+
+     service.AddCollection(state.customer.id,state.customer.transactions)
+    
+}
+
+const addPayment = (paymentData,status)=>{
+     if(paymentData.sum<0)
+	return
+
+	if(status=="payment")
+	var sum=paymentData.sum.toFixed(2)*-1;
+	else sum=paymentData.sum.toFixed(2)*1
+
+     state.customer.balance=parseFloat(state.customer.balance) + sum;
+
+
+	UpdateBalance(state.customer.id,state.customer.balance)
+     var data={ balance:state.customer.balance, ...paymentData }
+	
+	if(!state.customer.transactions){
+		state.customer.transactions=[]
+	}
+	state.customer.transactions.push(data)
+
+      service.AddPayment(state.customer.id,state.customer.transactions,status)
+    
+}
+
+
+provide("addPayment",addPayment)
+
 
 
 </script>
@@ -57,7 +95,7 @@ service.GetCustomer(decodeId).then((data) => {
 <template>
   <title-bar :title-stack="titleStack" />
 
-  
+
 
   <main-section>
     <div class="flex justify-between">

@@ -12,7 +12,7 @@
 
       <div class="form-input">
         <span>Meblağ *</span>
-        <input v-model="state.cashModel.sum" type="number" step="0.001" placeholder="0 TL" />
+        <input v-model="state.cashModel.sum" type="number" step="0.001" placeholder="0 TL"/>
       </div>
 
       <div class="form-input">
@@ -21,7 +21,7 @@
       </div>
       <div class="buttons flex justify-between full">
         <button @click="cancel" class="back">Vazgeç</button>
-        <button @click="add(state.cashModel)">{{ statusText }} Ekle</button>
+        <button @click="add(state.cashModel)">Tahsilat Ekle</button>
       </div>
     </div>
 
@@ -37,13 +37,14 @@
 
       <div class="form-input">
         <span>Meblağ *</span>
-        <input v-model="state.checkModel.sum" type="number" step="0.001"  placeholder="0 TL" />
+        <input v-model="state.checkModel.sum" type="number" placeholder="0 TL" />
       </div>
       <div class="form-input">
         <span>Banka</span>
-        <select v-model="state.checkModel.bank">
-          <option v-for="bank in state.bankList" :key="bank" :value="bank">{{ bank }}</option>
-        </select>
+	   <select v-model="state.checkModel.bank">
+		   <option v-for="bank in state.bankList" :key="bank" :value="bank">{{bank}}</option>
+	   </select>
+	    
       </div>
 
       <div class="form-input">
@@ -58,7 +59,7 @@
 
       <div class="buttons flex justify-between full">
         <button @click="cancel" class="back">Vazgeç</button>
-        <button @click="add(state.checkModel)">{{ statusText }}} Ekle</button>
+        <button @click="add(state.checkModel)">Tahsilat Ekle</button>
       </div>
     </div>
   </div>
@@ -68,77 +69,82 @@
 import { ref, reactive, computed, inject } from "vue";
 import CheckRadioPicker from "@/components/CheckRadioPicker.vue";
 import service from "@/services/service";
-import { getPaymentObject } from "@/utils/helpers/payment.js";
 
 const props = defineProps({
   cancel: {
     type: Function,
   },
-  status: String,
 });
 
-const statusText = computed(() => {
-  return props.status == "payment" ? "Ödeme" : "Tahsilat";
-});
-
-const operations = computed(() => {
-  return [
-    { id: 0, name: "Nakit " + statusText.value },
-    { id: 1, name: "Çek " + statusText.value },
-  ];
-});
+const operations = [
+  { id: 0, name: "Nakit  Ödeme" },
+  { id: 1, name: "Çek  Ödeme" },
+];
+const today=new Date();
 
 const state = reactive({
-  cashModel: getPaymentObject(0),
-  checkModel: getPaymentObject(1),
-  bankList: [
-    "Adabank",
-    "Akbank",
-    "Albara Türk",
-    "Anadolu Bank",
-    "A&T Bank",
-    "Citi Bank",
-    "Deniz Bank",
-    "Enpara",
-    "Fibabanka",
-    "QNB Finansbank",
-    "Garanti Bankası",
-    "HalkBank",
-    "HSBC",
-    "ING",
-    "Türkiye İş Bankası",
-    "Kuveyt Türk",
-    "Odea Bank",
-    "Rabobank",
-    "Şekerbank",
-    "Türkiye Finans",
-    "T-Bank",
-    "Vakıf Bank",
-    "Vakıf Katılım",
-    "Yapı Kredi",
-    "Ziraat Bankası",
-    "Ziraat Katılım",
-    "Diğer",
-  ],
-  selectedTab: 0,
+  selectedTab: operations[0].id,
+  cashModel: {
+    date:today.toISOString().slice(0,10),
+    description: "",
+    sum: null,
+    operation: {
+      id: 0,
+      name: "Nakit Ödeme",
+    },
+  },
+  checkModel: {
+    date:today.toISOString().slice(0,10),
+    expiry_date:new Date(today.setMonth(today.getMonth()+1)).toISOString().slice(0,10),
+    description: "",
+    sum: null,
+    bank: "",
+    check_no: "",
+    operation: {
+      id: 1,
+      name: "Çek Ödeme",
+    },
+  },
+  bankList:[
+  "Adabank","Akbank","Albara Türk"
+  ,"Anadolu Bank","A&T Bank","Citi Bank","Deniz Bank"
+  ,"Enpara","Fibabanka","QNB Finansbank","Garanti Bankası"
+  ,"HalkBank","HSBC","ING","Türkiye İş Bankası","Kuveyt Türk"
+  ,"Odea Bank","Rabobank", "Şekerbank","Türkiye Finans","T-Bank"
+  ,"Vakıf Bank","Vakıf Katılım","Yapı Kredi","Ziraat Bankası"
+  ,"Ziraat Katılım","Diğer"
+  ]
 });
 
 const addPayment = inject("addPayment");
 
 const add = (Item) => {
   if (!Item.date && !Item.sum) return;
+  if (Item.operation.id == 1 && !Item.expiry_date) return;
 
-  const operationVal = operations.value.filter((x) => x.id == state.selectedTab)[0];
-    if (operationVal.id == 1 && !Item.expiry_date) 
-    return;
+  addPayment(Item);
+  state.checkModel = {
+    date: "",
+    expiry_date: "",
+    description: "",
+    sum: null,
+    bank: "",
+    check_no: "",
+    operation: {
+      id: 1,
+      name: "Çek Ödeme",
+    },
+  };
 
-
-  addPayment({ ...Item , operation:{...operationVal} },props.status);
- 
-  state.cashModel = getPaymentObject(0),
-  state.checkModel = getPaymentObject(1)
-
- 
+  (state.cashModel = {
+    date: "",
+    description: "",
+    sum: null,
+    operation: {
+      id: 0,
+      name: "Nakit Ödeme",
+    },
+  }),
     props.cancel();
 };
 </script>
@@ -183,8 +189,7 @@ const add = (Item) => {
   color: #999593;
   font-family: "Roboto Condensed", sans-serif;
 }
-.form-input input,
-.form-input select {
+.form-input input,.form-input select {
   width: 60%;
   border: 1px solid #cac7c759;
   height: 45px;

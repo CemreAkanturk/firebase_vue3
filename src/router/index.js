@@ -110,7 +110,7 @@ const router = createRouter({
 
 router.beforeEach((to, _, next) => {
 
-	const authRequiredRoutes = ["home","customer", "tables","forms", "ui","profile","responsive","error"];
+	const authRequiredRoutes = ["home","customer", "customers" ,"addcustomer","tables","forms", "ui","profile","responsive","error"];
 	const authNotRequiredRoutes = ["login"];
    
 	if (authNotRequiredRoutes.indexOf(to.name) > -1) {
