@@ -39,6 +39,24 @@ const routes = [
 	name: 'addcustomer',
 	component:  () => import( '@/views/AddCustomer.vue')
    },
+   {
+   
+	meta: {
+	  title: 'Faturalar'
+	},
+	path: '/faturalar',
+	name: 'invoices',
+	component:  () => import( '@/views/Invoices.vue')
+   },
+   {
+   
+	meta: {
+	  title: 'YeniFatura'
+	},
+	path: '/faturalar/yeni',
+	name: 'addInvoice',
+	component:  () => import( '@/views/AddInvoice.vue')
+   },
   {
     meta: {
       title: 'Tables'

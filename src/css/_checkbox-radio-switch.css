@@ -1,5 +1,6 @@
 .checkbox, .radio, .switch {
-  @apply inline-flex items-center cursor-pointer relative;
+  @apply inline-flex items-start cursor-pointer relative;
+  width: 20%
 }
 
 .checkbox input[type=checkbox], .radio input[type=radio], .switch input[type=checkbox] {

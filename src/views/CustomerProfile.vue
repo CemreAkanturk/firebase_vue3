@@ -99,6 +99,8 @@ provide("addPayment",addPayment)
 
   <main-section>
     <div class="flex justify-between">
+
+	    
       <card-component style="width: 74%">
 	 <user-card :customerHead="state.customer" />
         <div class="flex flex-col">

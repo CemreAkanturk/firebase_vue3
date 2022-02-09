@@ -126,6 +126,7 @@ if (props.ctrlKFocus) {
         {{ option.label ?? option }}
       </option>
     </select>
+    
     <textarea
       v-else-if="computedType === 'textarea'"
       :id="id"

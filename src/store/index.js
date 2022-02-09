@@ -15,6 +15,7 @@ export default createStore({
     isFieldFocusRegistered: false,
     clients: [],
     history: [],
+    customers:[]
   },
   getters: {
     _isAuthenticated: (state) => state.user !== null,
@@ -23,8 +24,19 @@ export default createStore({
       delete user?.password;
       return user;
     },
-    _userLikes: (state) => state.user?.likes || [],
-    _userBookmarks: (state) => state.user?.bookmarks || [],
+    _getCurrentUserId(state) {
+	const user = state.user;
+	return user.id;
+   },
+    _customers(state) {
+	const customers = state.customers;
+	customers.map(customer=>{
+		delete customer?.transactions;
+		delete customer?.email;
+		delete customer?.iban
+	})
+	
+	 return customers || []}
   },
   mutations: {
     /* A fit-them-all commit */
@@ -35,6 +47,9 @@ export default createStore({
     setUser(state, user) {
       state.user = user;
     },
+    setCustomers(state, customers) {
+	state.customers = customers;
+   },
     logoutUser(state) {
       state.user = null;
     },

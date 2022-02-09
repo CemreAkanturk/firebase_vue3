@@ -24,6 +24,7 @@
       <nav-bar-item type="flex lg:hidden" @click.prevent="menuToggleMobile">
         <icon :path="menuToggleMobileIcon" size="24" />
       </nav-bar-item>
+	 
       <nav-bar-item type="hidden lg:flex xl:hidden" @click.prevent="menuOpenLg">
         <icon :path="mdiMenu" size="24" />
       </nav-bar-item>

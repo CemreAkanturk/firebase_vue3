@@ -24,6 +24,7 @@ import HeroBar from "@/components/HeroBar.vue";
 import Control from "@/components/Control.vue";
 import Customertable from "@/components/Customer/customertable.vue";
 import CardComponent from "@/components/CardComponent.vue";
+import { useStore } from 'vuex'
 
 export default {
   components: {
@@ -41,12 +42,15 @@ export default {
     };
   },
   created() {
+    const store = useStore()
     this.$store.dispatch("getAllCustomers").then((response) => {
-      this.customers = response;
-	
+     this.customers = response;
+	store.commit("setCustomers", this.customers);
     });
   
+  
   },
+
   methods: {
     deleteItem(id) {
       this.customers = this.customers.filter((x) => x.id != id);
@@ -79,7 +83,7 @@ export default {
   width: 39%;
   border-radius: 5px;
   color: #fff;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 50px;
 }
 

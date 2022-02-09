@@ -1,0 +1,31 @@
+var bankList=[
+  "Adabank",
+  "Akbank",
+  "Albara Türk",
+  "Anadolu Bank",
+  "A&T Bank",
+  "Citi Bank",
+  "Deniz Bank",
+  "Enpara",
+  "Fibabanka",
+  "QNB Finansbank",
+  "Garanti Bankası",
+  "HalkBank",
+  "HSBC",
+  "ING",
+  "Türkiye İş Bankası",
+  "Kuveyt Türk",
+  "Odea Bank",
+  "Rabobank",
+  "Şekerbank",
+  "Türkiye Finans",
+  "T-Bank",
+  "Vakıf Bank",
+  "Vakıf Katılım",
+  "Yapı Kredi",
+  "Ziraat Bankası",
+  "Ziraat Katılım",
+  "Diğer"
+]
+
+export default bankList;

@@ -69,6 +69,7 @@
 import { ref, reactive, computed, inject } from "vue";
 import CheckRadioPicker from "@/components/CheckRadioPicker.vue";
 import service from "@/services/service";
+import BankList from '@/utils/constants/bankList.js'
 
 const props = defineProps({
   cancel: {
@@ -105,15 +106,7 @@ const state = reactive({
       name: "Çek Ödeme",
     },
   },
-  bankList:[
-  "Adabank","Akbank","Albara Türk"
-  ,"Anadolu Bank","A&T Bank","Citi Bank","Deniz Bank"
-  ,"Enpara","Fibabanka","QNB Finansbank","Garanti Bankası"
-  ,"HalkBank","HSBC","ING","Türkiye İş Bankası","Kuveyt Türk"
-  ,"Odea Bank","Rabobank", "Şekerbank","Türkiye Finans","T-Bank"
-  ,"Vakıf Bank","Vakıf Katılım","Yapı Kredi","Ziraat Bankası"
-  ,"Ziraat Katılım","Diğer"
-  ]
+  bankList:BankList
 });
 
 const addPayment = inject("addPayment");

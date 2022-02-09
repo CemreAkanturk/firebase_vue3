@@ -9,89 +9,131 @@
 @import "_progress.css";
 @import "_table.css";
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
 
 *:focus,
 *:active,
 *::before,
-*::after{
-	outline:none !important;
-	--tw-ring-shadow:none !important
+*::after {
+  outline: none !important;
+  --tw-ring-shadow: none !important;
 }
 
-.checkbox input[type=checkbox]:focus+.check{
-	--tw-ring-shadow:none !important
+.checkbox input[type="checkbox"]:focus + .check {
+  --tw-ring-shadow: none !important;
 }
 .search .border-gray-700 {
-    border-color:#ededed1e !important;
+  border-color: #ededed1e !important;
 }
 
-.addCustomer .border-gray-700  {
-    border-color:#0f0f0f42 !important;
+.addCustomer .border-gray-700 {
+  border-color: #0f0f0f42 !important;
 }
 
-.dark tr:nth-child(odd) td  {
-   background-color: #111827 !important;
+.dark tr:nth-child(odd) td {
+  background-color: #111827 !important;
 }
 .dark tr:hover td {
-    background-color: #19243a !important;
+  background-color: #19243a !important;
 }
 
-.login-background{
-background: #232526;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+.login-background {
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #414345, #232526); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
- #app{
-	padding: 0 20px;
-}
-
-.full-screen #app{
-	padding: 0;
+#app {
+  padding: 0 20px;
 }
 
-.icon-32{
-	width: 32px;
-	height: 32px;
-	margin:0 5px;
+.full-screen #app {
+  padding: 0;
 }
 
-body{
-	font-family: 'Roboto', sans-serif;
+.icon-32 {
+  width: 32px;
+  height: 32px;
+  margin: 0 5px;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
 }
 
 th {
-	color: #403637;
-	font-family: "Roboto Condensed", sans-serif;
-	text-transform: uppercase;
-	font-weight: 600;
-	letter-spacing: 0.5px;
-	font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 14px;
+  color: #403637;
+  font-family: "Roboto Condensed", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
 }
 
 .dark th {
-	color: #ebebeb;
-
+  color: #ebebeb;
 }
 
 td {
-	
-	font-family: "Roboto", sans-serif;
-	font-weight: 400;
-	letter-spacing: 0.5px;
-	font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }
 
-.full{
-	width: 100%;
+.full {
+  width: 100%;
 }
 
 .bg-blue-500 {
-	background-color: #117db1;
+  background-color: #117db1;
+}
+.w10 {
+  width: 10%;
+}
+
+.w20 {
+  width: 20%;
+}
+
+.w30 {
+  width: 30%;
+}
+
+.w40 {
+  width: 40%;
+}
+
+.w50 {
+  width: 50%;
+}
+
+.w60 {
+  width: 60%;
+}
+
+.w70 {
+  width: 70%;
+}
+
+.w80 {
+  width: 80%;
+}
+
+.w90 {
+  width: 90%;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.description{
+	font-size:12px;
+	color:rgba(0, 0, 0, 0.445);
+	font-style: italic;
 }
